@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.12'
+    id 'io.spring.dependency-management' version '1.1.0'}
+
+group = 'org.redis.cache'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileJava {
+    options.compilerArgs << '-Amapstruct.defaultComponentModel=spring'
+}
+
+dependencies {
+    //spring
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '3.1.2'
+
+    // Lombok
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    //Mapstruct
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: '1.5.5.Final'
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.5.5.Final'
+    implementation 'mysql:mysql-connector-java:8.0.31'
+
+    //Swagger
+    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+    //redis
+    implementation group: 'redis.clients', name: 'jedis', version: '3.9.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '3.1.1'
+}
